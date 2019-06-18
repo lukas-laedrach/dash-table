@@ -67,6 +67,18 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
         }, css);
     }
 
+    private updateContent(table: HTMLDivElement) {
+        const { paginator } = this.props;
+
+        // if (page_action === TableAction.Infinite) {
+            if (table.clientHeight + table.scrollTop >= table.scrollHeight) {
+                paginator.loadNext();
+            } else if (table.clientHeight + table.scrollTop <= 0) {
+                paginator.loadPrevious();
+            }
+        // }
+    }
+
     private updateUiViewport() {
         const {
             setState,
@@ -672,6 +684,7 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
         Logger.trace(`ControlledTable fragment scrolled to (left,top)=(${ev.target.scrollLeft},${ev.target.scrollTop})`);
         r0c1.style.marginLeft = `${-ev.target.scrollLeft}px`;
 
+        this.updateContent(ev.target);
         this.updateUiViewport();
         this.handleDropdown();
         this.adjustTooltipPosition();
