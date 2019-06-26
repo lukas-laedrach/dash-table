@@ -27,7 +27,7 @@ When left unspecified, each individual nested prop will default to a pre-determi
   'numerals': a list of ten strings used as replacements for numbers 0-9
   'percent': (default: '%') the string used for the percentage symbol
   'separate_4digits': (default: True) separate integers with 4-digits or less. locale_format has the following type: dict containing keys 'symbol', 'decimal', 'group', 'grouping', 'numerals', 'percent', 'separate_4digits'.
-Those keys have the following types:
+Those keys have the following types: 
   - symbol (list; optional)
   - decimal (string; optional)
   - group (string; optional)
@@ -169,11 +169,13 @@ _and_ represents the current state of the pagination UI.
 - `page_size` represents the number of rows that will be
 displayed on a particular page.
 - `current_page` represents which page the user is on.
+- `repositioning` may be 'start', 'end' or undefined and it will adjust the scroll position the start or end respectively
 Use this property to index through data in your callbacks with
-backend paging.. pagination_settings has the following type: dict containing keys 'current_page', 'page_size'.
-Those keys have the following types:
+backend paging.. pagination_settings has the following type: dict containing keys 'current_page', 'page_size', 'repositioning'.
+Those keys have the following types: 
   - current_page (number; required)
   - page_size (number; required)
+  - repositioning (a value equal to: 'start', 'end', undefined; optional)
 - navigation (string; optional): DEPRECATED
 - column_conditional_dropdowns (list; optional): `column_conditional_dropdowns` specifies the available options
 for dropdowns in various columns and cells.
@@ -214,7 +216,7 @@ If set to `null`, the tooltip will not disappear.
 Alternatively, the value of the property can also be
 a plain string. The `text` syntax will be used in
 that case.. column_static_tooltip has the following type: dict with strings as keys and values of type dict containing keys 'delay', 'duration', 'type', 'value'.
-Those keys have the following types:
+Those keys have the following types: 
   - delay (number; optional)
   - duration (number; optional)
   - type (a value equal to: 'text', 'markdown'; optional)
@@ -408,13 +410,16 @@ while `derived_virtual_indices` contains indices for across all pages.
  `selected_rows` from the perspective of the `derived_virtual_indices`.
 - dropdown_properties (boolean | number | string | dict | list; optional): DEPRECATED
 Subscribe to [https://github.com/plotly/dash-table/issues/168](https://github.com/plotly/dash-table/issues/168)
-for updates on the dropdown API."""
+for updates on the dropdown API.
+
+Available events: """
     @_explicitize_args
     def __init__(self, active_cell=Component.UNDEFINED, columns=Component.UNDEFINED, locale_format=Component.UNDEFINED, content_style=Component.UNDEFINED, css=Component.UNDEFINED, data=Component.UNDEFINED, data_previous=Component.UNDEFINED, data_timestamp=Component.UNDEFINED, editable=Component.UNDEFINED, end_cell=Component.UNDEFINED, id=Component.UNDEFINED, is_focused=Component.UNDEFINED, merge_duplicate_headers=Component.UNDEFINED, n_fixed_columns=Component.UNDEFINED, n_fixed_rows=Component.UNDEFINED, row_deletable=Component.UNDEFINED, row_selectable=Component.UNDEFINED, selected_cells=Component.UNDEFINED, selected_rows=Component.UNDEFINED, start_cell=Component.UNDEFINED, style_as_list_view=Component.UNDEFINED, pagination_mode=Component.UNDEFINED, pagination_settings=Component.UNDEFINED, navigation=Component.UNDEFINED, column_conditional_dropdowns=Component.UNDEFINED, column_static_dropdown=Component.UNDEFINED, column_static_tooltip=Component.UNDEFINED, column_conditional_tooltips=Component.UNDEFINED, tooltips=Component.UNDEFINED, tooltip_delay=Component.UNDEFINED, tooltip_duration=Component.UNDEFINED, filtering=Component.UNDEFINED, filtering_settings=Component.UNDEFINED, filtering_type=Component.UNDEFINED, filtering_types=Component.UNDEFINED, sorting=Component.UNDEFINED, sorting_type=Component.UNDEFINED, sorting_settings=Component.UNDEFINED, sorting_treat_empty_string_as_none=Component.UNDEFINED, style_table=Component.UNDEFINED, style_cell=Component.UNDEFINED, style_data=Component.UNDEFINED, style_filter=Component.UNDEFINED, style_header=Component.UNDEFINED, style_cell_conditional=Component.UNDEFINED, style_data_conditional=Component.UNDEFINED, style_filter_conditional=Component.UNDEFINED, style_header_conditional=Component.UNDEFINED, virtualization=Component.UNDEFINED, derived_viewport_data=Component.UNDEFINED, derived_viewport_indices=Component.UNDEFINED, derived_viewport_selected_rows=Component.UNDEFINED, derived_virtual_data=Component.UNDEFINED, derived_virtual_indices=Component.UNDEFINED, derived_virtual_selected_rows=Component.UNDEFINED, dropdown_properties=Component.UNDEFINED, **kwargs):
         self._prop_names = ['active_cell', 'columns', 'locale_format', 'content_style', 'css', 'data', 'data_previous', 'data_timestamp', 'editable', 'end_cell', 'id', 'is_focused', 'merge_duplicate_headers', 'n_fixed_columns', 'n_fixed_rows', 'row_deletable', 'row_selectable', 'selected_cells', 'selected_rows', 'start_cell', 'style_as_list_view', 'pagination_mode', 'pagination_settings', 'navigation', 'column_conditional_dropdowns', 'column_static_dropdown', 'column_static_tooltip', 'column_conditional_tooltips', 'tooltips', 'tooltip_delay', 'tooltip_duration', 'filtering', 'filtering_settings', 'filtering_type', 'filtering_types', 'sorting', 'sorting_type', 'sorting_settings', 'sorting_treat_empty_string_as_none', 'style_table', 'style_cell', 'style_data', 'style_filter', 'style_header', 'style_cell_conditional', 'style_data_conditional', 'style_filter_conditional', 'style_header_conditional', 'virtualization', 'derived_viewport_data', 'derived_viewport_indices', 'derived_viewport_selected_rows', 'derived_virtual_data', 'derived_virtual_indices', 'derived_virtual_selected_rows', 'dropdown_properties']
         self._type = 'DataTable'
         self._namespace = 'dash_table'
         self._valid_wildcard_attributes =            []
+        self.available_events = []
         self.available_properties = ['active_cell', 'columns', 'locale_format', 'content_style', 'css', 'data', 'data_previous', 'data_timestamp', 'editable', 'end_cell', 'id', 'is_focused', 'merge_duplicate_headers', 'n_fixed_columns', 'n_fixed_rows', 'row_deletable', 'row_selectable', 'selected_cells', 'selected_rows', 'start_cell', 'style_as_list_view', 'pagination_mode', 'pagination_settings', 'navigation', 'column_conditional_dropdowns', 'column_static_dropdown', 'column_static_tooltip', 'column_conditional_tooltips', 'tooltips', 'tooltip_delay', 'tooltip_duration', 'filtering', 'filtering_settings', 'filtering_type', 'filtering_types', 'sorting', 'sorting_type', 'sorting_settings', 'sorting_treat_empty_string_as_none', 'style_table', 'style_cell', 'style_data', 'style_filter', 'style_header', 'style_cell_conditional', 'style_data_conditional', 'style_filter_conditional', 'style_header_conditional', 'virtualization', 'derived_viewport_data', 'derived_viewport_indices', 'derived_viewport_selected_rows', 'derived_virtual_data', 'derived_virtual_indices', 'derived_virtual_selected_rows', 'dropdown_properties']
         self.available_wildcard_properties =            []
 
@@ -428,3 +433,26 @@ for updates on the dropdown API."""
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
         super(DataTable, self).__init__(**args)
+
+    def __repr__(self):
+        if(any(getattr(self, c, None) is not None
+               for c in self._prop_names
+               if c is not self._prop_names[0])
+           or any(getattr(self, c, None) is not None
+                  for c in self.__dict__.keys()
+                  if any(c.startswith(wc_attr)
+                  for wc_attr in self._valid_wildcard_attributes))):
+            props_string = ', '.join([c+'='+repr(getattr(self, c, None))
+                                      for c in self._prop_names
+                                      if getattr(self, c, None) is not None])
+            wilds_string = ', '.join([c+'='+repr(getattr(self, c, None))
+                                      for c in self.__dict__.keys()
+                                      if any([c.startswith(wc_attr)
+                                      for wc_attr in
+                                      self._valid_wildcard_attributes])])
+            return ('DataTable(' + props_string +
+                   (', ' + wilds_string if wilds_string != '' else '') + ')')
+        else:
+            return (
+                'DataTable(' +
+                repr(getattr(self, self._prop_names[0], None)) + ')')
