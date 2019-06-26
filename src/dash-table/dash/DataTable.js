@@ -553,12 +553,14 @@ export const propTypes = {
      * - `page_size` represents the number of rows that will be
      * displayed on a particular page.
      * - `current_page` represents which page the user is on.
+     * - `repositioning` may be 'start', 'end' or undefined and it will adjust the scroll position the start or end respectively
      * Use this property to index through data in your callbacks with
      * backend paging.
      */
     pagination_settings: PropTypes.shape({
         current_page: PropTypes.number.isRequired,
-        page_size: PropTypes.number.isRequired
+        page_size: PropTypes.number.isRequired,
+        repositioning: PropTypes.oneOf(['start', 'end', undefined])
     }),
 
     /**

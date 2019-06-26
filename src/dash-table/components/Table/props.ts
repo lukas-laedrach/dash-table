@@ -210,6 +210,7 @@ interface IStylesheetRule {
 export interface IPaginationSettings {
     current_page: number;
     page_size: number;
+    repositioning?: ScrollLogicalPosition
 }
 
 export interface IUserInterfaceCell {

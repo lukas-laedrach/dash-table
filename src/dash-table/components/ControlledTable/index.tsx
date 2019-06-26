@@ -137,6 +137,7 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
     componentDidUpdate() {
         this.applyStyle();
         this.handleResize();
+        this.adjustScrollPosition();
         this.handleDropdown();
         this.adjustTooltipPosition();
 
@@ -197,6 +198,43 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
     }
 
     forceHandleResize = () => this.handleResize(true);
+
+    adjustScrollPosition = () => {
+        const {
+            setProps,
+            setState,
+            uiViewport,
+            pagination_settings
+        } = this.props;
+
+        if(pagination_settings.repositioning && uiViewport) {
+            const { r1 } = this.refs as { [key: string]: HTMLDivElement };
+            
+            const newTop = (pagination_settings.repositioning === 'start') ?
+                0 : 
+                (pagination_settings.repositioning === 'end') 
+                    ? r1.scrollHeight - r1.clientHeight : 
+                    uiViewport.scrollTop
+
+            setProps({ pagination_settings : 
+                { 
+                    current_page : pagination_settings.current_page, 
+                    page_size: pagination_settings.page_size, 
+                    repositioning : undefined
+                }
+            });
+            setState({
+                uiViewport: {
+                    scrollLeft: uiViewport.scrollLeft,
+                    scrollTop: newTop,
+                    height: uiViewport.height,
+                    width: uiViewport.width
+                }
+            });
+
+            r1.scrollTo(r1.scrollLeft, newTop);
+        }
+    }
 
     handleResize = (force: boolean = false) => {
         const {
